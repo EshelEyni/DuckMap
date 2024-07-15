@@ -16,7 +16,7 @@ type MapProps = {
   ducks: Duck[];
 };
 
-export const Map: FC<MapProps> = ({ ducks }) => {
+const Map: FC<MapProps> = ({ ducks }) => {
   useEffect(() => {
     const urbanLayer = new TileLayer({
       source: new XYZ({
@@ -82,3 +82,5 @@ export const Map: FC<MapProps> = ({ ducks }) => {
     />
   );
 };
+
+export default Map;
