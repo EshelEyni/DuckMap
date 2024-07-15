@@ -10,6 +10,7 @@ import VectorLayer from "ol/layer/Vector";
 import Style from "ol/style/Style";
 import Icon from "ol/style/Icon";
 import { Duck } from "../../../shared/types/system";
+import duckSVG from "/assets/duck.svg";
 
 type MapProps = {
   ducks: Duck[];
@@ -39,7 +40,7 @@ export const Map: FC<MapProps> = ({ ducks }) => {
 
       return new Style({
         image: new Icon({
-          src: "/assets/duck.svg",
+          src: duckSVG,
           scale: scale,
           anchor: [0.5, 0.5],
           anchorXUnits: "fraction",
@@ -51,9 +52,7 @@ export const Map: FC<MapProps> = ({ ducks }) => {
     if (ducks && ducks.length > 0) {
       const features = ducks.map(s => {
         const feature = new Feature({
-          geometry: new Point(
-            fromLonLat([s.coords.longitude, s.coords.latitude]),
-          ),
+          geometry: new Point(fromLonLat([s.coords.lng, s.coords.lat])),
           name: s.name,
         });
         return feature;

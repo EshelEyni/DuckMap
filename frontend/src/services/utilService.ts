@@ -1,5 +1,4 @@
 import { JsendResponse } from "../../../shared/types/system";
-import { QueryState } from "../types/app";
 
 function handleServerResponse<T>(response: JsendResponse): T {
   if (response.status === "success") {
@@ -14,18 +13,4 @@ function handleServerResponse<T>(response: JsendResponse): T {
   }
 }
 
-const QUERY_TIMEOUT = 3000;
-
-const defaultQueryState: QueryState = { state: "idle", error: null };
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getErrorMessage(error: any) {
-  return error.response.data.message;
-}
-
-export {
-  handleServerResponse,
-  QUERY_TIMEOUT,
-  defaultQueryState,
-  getErrorMessage,
-};
+export { handleServerResponse };

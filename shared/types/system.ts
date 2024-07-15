@@ -9,8 +9,8 @@ export type JsendResponse = {
 };
 
 export type Coords = {
-  longitude: number;
-  latitude: number;
+  lng: number;
+  lat: number;
 };
 
 export interface BaseDuck {
