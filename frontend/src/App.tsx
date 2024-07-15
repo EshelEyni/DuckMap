@@ -9,7 +9,6 @@ import { Map } from "./components/Map";
 function App() {
   const dispatch: AppDispatch = useDispatch();
   const ducks = useDucks();
-  console.log(ducks);
 
   useEffect(() => {
     dispatch(getDucks());
