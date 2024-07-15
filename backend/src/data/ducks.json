@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "name",
+    "coords": {
+      "lat": 34.794758,
+      "lng": 32.07576
+    }
+  },
+  {
+    "id": "31744b54-1402-4f5f-8024-71d3f07f06ba",
+    "name": "name",
+    "coords": {
+      "lat": 1,
+      "lng": 1
+    }
+  },
+  {
+    "id": "209aa5ee-0a36-4865-8d1d-e6a93ef23102",
+    "name": "name",
+    "coords": {
+      "lat": 1,
+      "lng": 1
+    }
+  }
+]
