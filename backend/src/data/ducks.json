@@ -206,5 +206,13 @@
       "lon": 1
     },
     "id": "43ead8a6-6edf-4c90-83b6-de3e4e62ca8f"
+  },
+  {
+    "name": "eshel",
+    "coords": {
+      "lat": 0,
+      "lon": 0
+    },
+    "id": "1ff1cc1e-d5b1-4f74-a65b-0deb96b3cf4c"
   }
 ]
