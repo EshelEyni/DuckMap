@@ -1,13 +1,10 @@
 import { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Button, Box } from "@mui/material";
-import { AppDispatch, ViewMode } from "../types/app";
+import { AppDispatch } from "../types/app";
 import { useDispatch } from "react-redux";
 import { addDuck } from "../store/slices/duckSlice";
-
-type AddDuckFormProp = {
-  setViewMode: React.Dispatch<React.SetStateAction<ViewMode>>;
-};
+import { setViewMode } from "../store/slices/viewSlice";
 
 type FormValues = {
   name: string;
@@ -17,7 +14,7 @@ type FormValues = {
   };
 };
 
-const AddDuckForm: FC<AddDuckFormProp> = ({ setViewMode }) => {
+const AddDuckForm: FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const {
@@ -28,7 +25,7 @@ const AddDuckForm: FC<AddDuckFormProp> = ({ setViewMode }) => {
 
   const onSubmit: SubmitHandler<FormValues> = data => {
     dispatch(addDuck(data));
-    setViewMode("map");
+    dispatch(setViewMode("map"));
   };
 
   return (

@@ -11,14 +11,6 @@ import BaseLayer from "ol/layer/Base";
 const DUCK_LAYER_ID = "duckLayer";
 
 export const updateVectorLayer = (map: OpenLayersMap, ducks: Duck[]) => {
-  const features = ducks.map(
-    d =>
-      new Feature({
-        geometry: new Point([d.coords.lon, d.coords.lat]),
-        name: d.name,
-      }),
-  );
-
   const getScale = () => {
     const zoom = map.getView().getZoom() || 0;
     const scale = Math.min(1, 0.005 * zoom);
@@ -35,6 +27,27 @@ export const updateVectorLayer = (map: OpenLayersMap, ducks: Duck[]) => {
         anchorYUnits: "fraction",
       }),
     });
+
+  const features = ducks.map(
+    d =>
+      new Feature({
+        geometry: new Point([d.coords.lon, d.coords.lat]),
+        name: d.name,
+      }),
+  );
+
+  const specificStyle = new Style({
+    image: new Icon({
+      src: duckSVG,
+      scale: 0.055,
+      color: "green",
+      anchor: [0.5, 0.5],
+      anchorXUnits: "fraction",
+      anchorYUnits: "fraction",
+    }),
+  });
+
+  if (features.length > 0) features[0].setStyle(specificStyle);
 
   let duckLayer = map
     .getLayers()

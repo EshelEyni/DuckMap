@@ -1,11 +1,9 @@
 import { FC } from "react";
-import { ViewMode } from "../types/app";
+import { AppDispatch, ViewMode } from "../types/app";
 import styled from "styled-components";
-
-type AppFilterProps = {
-  viewMode: ViewMode;
-  setViewMode: React.Dispatch<React.SetStateAction<ViewMode>>;
-};
+import { useDispatch, useSelector } from "react-redux";
+import { selectViewMode } from "../store/selectors/viewSelector";
+import { setViewMode } from "../store/slices/viewSlice";
 
 type Button = {
   title: string;
@@ -37,7 +35,7 @@ const FilterButton = styled.button.attrs<{ isActive: boolean }>(_ => ({
   }
 `;
 
-const AppFilter: FC<AppFilterProps> = ({ viewMode, setViewMode }) => {
+const AppFilter: FC = () => {
   const buttons: Button[] = [
     {
       title: "Map",
@@ -48,9 +46,11 @@ const AppFilter: FC<AppFilterProps> = ({ viewMode, setViewMode }) => {
       value: "form",
     },
   ];
+  const viewMode = useSelector(selectViewMode);
+  const dispatch: AppDispatch = useDispatch();
 
   function onClickButton(value: ViewMode) {
-    setViewMode(value);
+    dispatch(setViewMode(value));
   }
 
   return (
