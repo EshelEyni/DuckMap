@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { ViewMode } from "../types/app";
-import classnames from "classnames";
+import styled from "styled-components";
 
 type AppFilterProps = {
   viewMode: ViewMode;
@@ -11,6 +11,31 @@ type Button = {
   title: string;
   value: ViewMode;
 };
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  gap: 20px;
+`;
+
+const FilterButton = styled.button.attrs<{ isActive: boolean }>(_ => ({
+  isActive: undefined,
+}))<{ isActive: boolean }>`
+  padding: 8px 12px;
+  background-color: ${props => (props.isActive ? "#D97706" : "#FBBF24")};
+  border-radius: 9999px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #78350f;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    scale: 1.1;
+  }
+`;
 
 const AppFilter: FC<AppFilterProps> = ({ viewMode, setViewMode }) => {
   const buttons: Button[] = [
@@ -29,22 +54,17 @@ const AppFilter: FC<AppFilterProps> = ({ viewMode, setViewMode }) => {
   }
 
   return (
-    <div className="w-full flex items-center justify-center py-3 gap-5">
+    <Container>
       {buttons.map(b => (
-        <button
+        <FilterButton
           key={b.value}
           onClick={() => onClickButton(b.value)}
-          className={classnames(
-            "px-3 py-1 bg-amber-400 rounded-full text-xl font-semibold text-amber-950",
-            {
-              "!bg-amber-500": viewMode === b.value,
-            },
-          )}
+          isActive={viewMode === b.value}
         >
           {b.title}
-        </button>
+        </FilterButton>
       ))}
-    </div>
+    </Container>
   );
 };
 

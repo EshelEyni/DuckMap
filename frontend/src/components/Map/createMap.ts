@@ -2,7 +2,6 @@ import { Map as OpenLayersMap, View } from "ol";
 import TileLayer from "ol/layer/Tile";
 import { XYZ } from "ol/source";
 import "ol/ol.css";
-import { fromLonLat } from "ol/proj";
 
 export const createMap = (target: string) => {
   const urbanLayer = new TileLayer({
@@ -16,8 +15,9 @@ export const createMap = (target: string) => {
     target: target,
     layers: [urbanLayer],
     view: new View({
-      center: fromLonLat([34.794758, 32.07576]),
+      center: [34.794758, 32.07576],
       zoom: 6,
+      projection: "EPSG:4326",
     }),
   });
 

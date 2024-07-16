@@ -1,6 +1,5 @@
 import { Map as OpenLayersMap, Feature } from "ol";
 import { Point } from "ol/geom";
-import { fromLonLat } from "ol/proj";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
 import Style from "ol/style/Style";
@@ -15,7 +14,7 @@ export const updateVectorLayer = (map: OpenLayersMap, ducks: Duck[]) => {
   const features = ducks.map(
     d =>
       new Feature({
-        geometry: new Point(fromLonLat([d.coords.lon, d.coords.lat])),
+        geometry: new Point([d.coords.lon, d.coords.lat]),
         name: d.name,
       }),
   );
