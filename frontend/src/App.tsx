@@ -5,7 +5,7 @@ import { getDucks } from "./store/slices/duckSlice";
 import { useEffect } from "react";
 import Map from "./components/Map/Map";
 import AppFilter from "./components/AppFilter";
-import AddDuckForm from "./components/AddDuckForm";
+import AddDuckForm from "./components/AddDuckForm/AddDuckForm";
 import { selectDucks } from "./store/selectors/duckSelector";
 import { selectViewMode } from "./store/selectors/viewSelector";
 

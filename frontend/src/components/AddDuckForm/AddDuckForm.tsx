@@ -1,10 +1,11 @@
 import { FC } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Button, Box } from "@mui/material";
-import { AppDispatch } from "../types/app";
+import { AppDispatch } from "../../types/app";
 import { useDispatch } from "react-redux";
-import { addDuck } from "../store/slices/duckSlice";
-import { setViewMode } from "../store/slices/viewSlice";
+import { addDuck } from "../../store/slices/duckSlice";
+import { setViewMode } from "../../store/slices/viewSlice";
+import txt from "./txt.json";
 
 type FormValues = {
   name: string;
@@ -42,7 +43,7 @@ const AddDuckForm: FC = () => {
       <TextField
         label="Name"
         variant="outlined"
-        {...register("name", { required: "Name is required" })}
+        {...register("name", { required: txt.nameRequire })}
         error={!!errors.name}
         helperText={errors.name ? errors.name.message : ""}
         className="w-9/12"
@@ -53,7 +54,7 @@ const AddDuckForm: FC = () => {
         type="number"
         inputProps={{ step: "any" }}
         {...register("coords.lat", {
-          required: "Latitude is required",
+          required: txt.LongitudeRequire,
           valueAsNumber: true,
         })}
         error={!!errors.coords?.lat}
@@ -66,7 +67,7 @@ const AddDuckForm: FC = () => {
         type="number"
         inputProps={{ step: "any" }}
         {...register("coords.lon", {
-          required: "Longitude is required",
+          required: txt.LongitudeRequire,
           valueAsNumber: true,
         })}
         error={!!errors.coords?.lon}
@@ -81,7 +82,7 @@ const AddDuckForm: FC = () => {
           fontWeight: "bold",
         }}
       >
-        Add
+        {txt.btnTitle}
       </Button>
     </Box>
   );
