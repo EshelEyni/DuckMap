@@ -13,7 +13,7 @@ type FormValues = {
   name: string;
   coords: {
     lat: number;
-    lng: number;
+    lon: number;
   };
 };
 
@@ -68,12 +68,12 @@ const AddDuckForm: FC<AddDuckFormProp> = ({ setViewMode }) => {
         variant="outlined"
         type="number"
         inputProps={{ step: "any" }}
-        {...register("coords.lng", {
+        {...register("coords.lon", {
           required: "Longitude is required",
           valueAsNumber: true,
         })}
-        error={!!errors.coords?.lng}
-        helperText={errors.coords?.lng ? errors.coords.lng.message : ""}
+        error={!!errors.coords?.lon}
+        helperText={errors.coords?.lon ? errors.coords.lon.message : ""}
         className="w-9/12"
       />
       <Button

@@ -17,7 +17,7 @@ export const addDuck = asyncErrorCatcher(async (req, res, next) => {
   const newDuck = req.body;
 
   if (!newDuck.name) throw new AppError("Name is required", 400);
-  if (!newDuck.coords || !newDuck.coords.lat || !newDuck.coords.lng)
+  if (!newDuck.coords || !newDuck.coords.lat || !newDuck.coords.lon)
     throw new AppError("Coords are required", 400);
 
   newDuck.id = uuid();

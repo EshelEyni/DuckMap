@@ -9,7 +9,7 @@ export type JsendResponse = {
 };
 
 export type Coords = {
-  lng: number;
+  lon: number;
   lat: number;
 };
 
