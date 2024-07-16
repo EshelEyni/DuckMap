@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "module": "commonjs",
     "strict": true,
-    "jsx": "react",
-    "outDir": "./dist",
-    "rootDir": "./",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "outDir": "./electron-dist",
+    "rootDir": "./electron",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
   },
-  "include": ["frontend/src/**/*", "backend/**/*"]
+  "include": ["electron/**/*"]
 }
