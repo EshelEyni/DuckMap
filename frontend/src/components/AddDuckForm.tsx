@@ -77,7 +77,6 @@ const AddDuckForm: FC<AddDuckFormProp> = ({ setViewMode }) => {
         className="w-9/12"
       />
       <Button
-        variant="contained"
         type="submit"
         style={{
           backgroundColor: "#fbbf24",

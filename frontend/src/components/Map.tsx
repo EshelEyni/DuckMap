@@ -34,33 +34,33 @@ const Map: FC<MapProps> = ({ ducks }) => {
       }),
     });
 
-    const iconStyleFunction = () => {
-      const zoom = map.getView().getZoom() || 0;
-      const scale = Math.min(1, 0.005 * zoom);
-
-      return new Style({
-        image: new Icon({
-          src: duckSVG,
-          scale: scale,
-          anchor: [0.5, 0.5],
-          anchorXUnits: "fraction",
-          anchorYUnits: "fraction",
-        }),
-      });
-    };
-
     if (ducks && ducks.length > 0) {
-      const features = ducks.map(s => {
-        const feature = new Feature({
-          geometry: new Point(fromLonLat([s.coords.lng, s.coords.lat])),
-          name: s.name,
-        });
-        return feature;
-      });
+      const features = ducks.map(
+        s =>
+          new Feature({
+            geometry: new Point(fromLonLat([s.coords.lng, s.coords.lat])),
+            name: s.name,
+          }),
+      );
 
-      const vectorSource = new VectorSource({
-        features: features,
-      });
+      const getScale = () => {
+        const zoom = map.getView().getZoom() || 0;
+        const scale = Math.min(1, 0.005 * zoom);
+        return scale;
+      };
+
+      const iconStyleFunction = () =>
+        new Style({
+          image: new Icon({
+            src: duckSVG,
+            scale: getScale(),
+            anchor: [0.5, 0.5],
+            anchorXUnits: "fraction",
+            anchorYUnits: "fraction",
+          }),
+        });
+
+      const vectorSource = new VectorSource({ features });
 
       const vectorLayer = new VectorLayer({
         source: vectorSource,
@@ -75,12 +75,7 @@ const Map: FC<MapProps> = ({ ducks }) => {
     };
   }, [ducks]);
 
-  return (
-    <div
-      id="map"
-      className="w-full h-[300px] sm:h-[400px] md:h-[750px] lg:h-[1000px]"
-    />
-  );
+  return <div id="map" className="w-full h-[500px] md:h-[750px]" />;
 };
 
 export default Map;
