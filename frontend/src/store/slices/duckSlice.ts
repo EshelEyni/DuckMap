@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BaseDuck, Duck } from "../../../../shared/types/system";
 import { AppThunk } from "../../types/app";
 import dataService from "../../services/dataService";
+import { v4 as uuidv4 } from "uuid";
 
 type DuckState = {
   ducks: Duck[];
@@ -42,7 +43,8 @@ export function getDucks(): AppThunk {
 export function addDuck(duck: BaseDuck): AppThunk {
   return async dispatch => {
     try {
-      const addedDuck = await dataService.addDuckToFile(duck);
+      const duckWithId = { ...duck, id: uuidv4() };
+      const addedDuck = await dataService.addDuckToFile(duckWithId);
 
       dispatch(setAddedDuck(addedDuck));
     } catch (err) {
