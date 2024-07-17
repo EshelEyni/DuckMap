@@ -40,7 +40,7 @@ export function getDucks(): AppThunk {
   };
 }
 
-export function addDuck(duck: BaseDuck): AppThunk {
+export const addDuck = (duck: BaseDuck): AppThunk => {
   return async dispatch => {
     try {
       const duckWithId = { ...duck, id: uuidv4() };
@@ -51,4 +51,4 @@ export function addDuck(duck: BaseDuck): AppThunk {
       console.error(err);
     }
   };
-}
+};

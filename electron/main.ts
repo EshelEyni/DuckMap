@@ -19,7 +19,11 @@ function createWindow() {
   if (isDev) {
     win.loadURL("http://localhost:5173");
   } else {
-    const indexPath = path.join(__dirname, "frontend", "index.html");
+    const indexPath = path.join(
+      __dirname,     
+      "client",
+      "index.html"
+    );
     win.loadFile(indexPath);
   }
 }

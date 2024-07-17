@@ -42,3 +42,4 @@ dist/
 
 # TailwindCSS generated files
 tailwind.config
+dist-package

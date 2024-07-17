@@ -25,6 +25,7 @@ export const updateVectorLayer = (map: OpenLayersMap, ducks: Duck[]) => {
         anchor: [0.5, 0.5],
         anchorXUnits: "fraction",
         anchorYUnits: "fraction",
+        opacity: 1,
       }),
     });
 
@@ -36,18 +37,16 @@ export const updateVectorLayer = (map: OpenLayersMap, ducks: Duck[]) => {
       }),
   );
 
-  const specificStyle = new Style({
-    image: new Icon({
-      src: duckSVG,
-      scale: 0.055,
-      color: "green",
-      anchor: [0.5, 0.5],
-      anchorXUnits: "fraction",
-      anchorYUnits: "fraction",
-    }),
-  });
+  features.forEach(f => f.setStyle(iconStyleFunction()));
 
-  if (features.length > 0) features[0].setStyle(specificStyle);
+  if (features.length > 0) {
+    const firstFeature = features[0];
+    const currentStyle = firstFeature.getStyle();
+    if (!(currentStyle instanceof Style)) return;
+    const currentImage = currentStyle.getImage();
+    if (!currentImage) return;
+    currentImage.setOpacity(0.5);
+  }
 
   let duckLayer = map
     .getLayers()
@@ -63,7 +62,7 @@ export const updateVectorLayer = (map: OpenLayersMap, ducks: Duck[]) => {
   } else {
     const source = new VectorSource({ features });
 
-    duckLayer = new VectorLayer({ source, style: iconStyleFunction });
+    duckLayer = new VectorLayer({ source });
     duckLayer.set("id", DUCK_LAYER_ID);
     map.addLayer(duckLayer);
   }
