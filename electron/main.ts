@@ -1,6 +1,11 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import * as fs from "fs";
+import { Duck } from "../shared/types/system";
+
+const isDev = process.env.NODE_ENV === "development";
+
+const dataFilePath = path.join(__dirname, "data.json");
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -8,14 +13,18 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: true,
+      nodeIntegration: false,
     },
   });
 
-  const indexPath = path.join(__dirname, "dist", "index.html");
-  console.log(indexPath);
-  win.loadFile(indexPath);
+  if (isDev) {
+    win.loadURL("http://localhost:5173");
+    win.webContents.openDevTools();
+  } else {
+    const indexPath = path.join(__dirname, "frontend", "index.html");
+    win.loadFile(indexPath);
+  }
 }
 
 app.whenReady().then(() => {
@@ -30,49 +39,34 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
 
-// Function to read JSON file
-function readJSONFile(filePath: string) {
+async function getData(): Promise<Duck[]> {
+  return new Promise((resolve, _) => {
+    fs.readFile(dataFilePath, "utf8", (err, data) => {
+      if (err) resolve([]);
+      else resolve(JSON.parse(data));
+    });
+  });
+}
+
+async function addItem(item: Duck) {
+  const data = await getData();
+  data.push(item);
   return new Promise((resolve, reject) => {
-    fs.readFile(filePath, "utf-8", (err, data) => {
+    fs.writeFile(dataFilePath, JSON.stringify(data, null, 2), (err) => {
       if (err) {
         reject(err);
       } else {
-        resolve(JSON.parse(data));
+        resolve(item);
       }
     });
   });
 }
 
-// Function to write to JSON file
-function writeJSONFile(filePath: string, data: any) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8", (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(true);
-      }
-    });
-  });
-}
-
-// IPC event listeners
-ipcMain.handle("read-data", async (event) => {
-  try {
-    const data = await readJSONFile(path.join(__dirname, "data.json"));
-    return data;
-  } catch (error) {
-    console.error("Error reading JSON file:", error);
-    throw error;
-  }
+// IPC handlers to interact with renderer process
+ipcMain.handle("get-data", async () => {
+  return await getData();
 });
 
-ipcMain.handle("write-data", async (event, newData) => {
-  try {
-    await writeJSONFile(path.join(__dirname, "data.json"), newData);
-    return true;
-  } catch (error) {
-    console.error("Error writing to JSON file:", error);
-    throw error;
-  }
+ipcMain.handle("add-item", async (_, item: Duck) => {
+  return await addItem(item);
 });

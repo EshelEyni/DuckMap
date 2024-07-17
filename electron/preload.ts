@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
+import { Duck } from "shared/types/system";
 
 window.addEventListener("DOMContentLoaded", () => {
   const replaceText = (selector: string, text: string) => {
@@ -12,6 +13,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 contextBridge.exposeInMainWorld("electronAPI", {
-  readData: () => ipcRenderer.invoke("read-data"),
-  writeData: (data: any) => ipcRenderer.invoke("write-data", data),
+  getData: () => ipcRenderer.invoke("get-data"),
+  addItem: (item: Duck) => ipcRenderer.invoke("add-item", item),
 });

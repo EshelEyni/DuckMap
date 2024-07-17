@@ -14,9 +14,9 @@ function App() {
   const ducks = useSelector(selectDucks);
   const viewMode = useSelector(selectViewMode);
 
-  // useEffect(() => {
-  //   dispatch(getDucks());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getDucks());
+  }, [dispatch]);
 
   return (
     <main>

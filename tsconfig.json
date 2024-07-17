@@ -4,12 +4,13 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "./electron-dist",
-    "rootDir": "./electron",
+    "outDir": "./dist",
+    "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*"]
+      "*": ["node_modules/*"],
+      "shared/*": ["shared/*"]
     }
   },
-  "include": ["electron/**/*"]
+  "include": ["electron/**/*", "shared/**/*"]
 }

@@ -1,0 +1,77 @@
+[33mcommit 69dc0681e40d686af03647725c168c1274aafc33[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32melectron-setup[m[33m, [m[1;31morigin/electron-setup[m[33m)[m
+Author: Eshel <eshel@webiks.com>
+Date:   Tue Jul 16 16:51:35 2024 +0300
+
+    electron app finished
+
+[33mcommit 914c0991600c24b1260efcf071f71f7919bcabba[m
+Author: Eshel <eshel@webiks.com>
+Date:   Tue Jul 16 15:58:53 2024 +0300
+
+    fixed duck coords validations
+
+[33mcommit f6e78d22469f22571c9b929d6d7c848e5d437bd1[m
+Author: Eshel <eshel@webiks.com>
+Date:   Tue Jul 16 15:57:31 2024 +0300
+
+    added text json for form
+
+[33mcommit 255d392414512814e391cda25a533a69f4bb1db5[m
+Author: Eshel <eshel@webiks.com>
+Date:   Tue Jul 16 15:41:59 2024 +0300
+
+    added view mode slice
+
+[33mcommit 6f2c6b6ef520fea1a9828ffbf1ad44c793542c73[m
+Author: Eshel <eshel@webiks.com>
+Date:   Tue Jul 16 15:04:39 2024 +0300
+
+    refactor app filter to styled component
+
+[33mcommit 745ecf6fd8cc900a36b947ea0996a634f838227a[m
+Author: Eshel <eshel@webiks.com>
+Date:   Tue Jul 16 14:24:22 2024 +0300
+
+    Map cmp refactoring
+
+[33mcommit ebc0d2bedbc2c08accce10d2524d990987d22cf0[m
+Author: Eshel <eshel@webiks.com>
+Date:   Tue Jul 16 10:00:16 2024 +0300
+
+    some small refactoring
+
+[33mcommit 3268b2cf218205c06c78d5edfca1522cc0fec6d2[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Merge: a721d90 ea77427
+Author: Eshel Eyni <109594932+EshelEyni@users.noreply.github.com>
+Date:   Mon Jul 15 17:27:12 2024 +0300
+
+    Merge pull request #2 from EshelEyni/add-duck-form
+    
+    finished add duck form
+
+[33mcommit ea77427002b3976eff74c86b12a2d2671aa30ea2[m[33m ([m[1;31morigin/add-duck-form[m[33m)[m
+Author: Eshel <eshel@webiks.com>
+Date:   Mon Jul 15 17:25:34 2024 +0300
+
+    finished add duck form
+
+[33mcommit a721d90fa32bd63852c1083711f5960e9219edd7[m
+Merge: f93903f 2974184
+Author: Eshel Eyni <109594932+EshelEyni@users.noreply.github.com>
+Date:   Mon Jul 15 15:42:47 2024 +0300
+
+    Merge pull request #1 from EshelEyni/map-config
+    
+    finished map
+
+[33mcommit 2974184145362d6979f946cdd216348694c978a8[m[33m ([m[1;31morigin/map-config[m[33m)[m
+Author: unknown <eshel@webiks.com>
+Date:   Mon Jul 15 15:38:16 2024 +0300
+
+    finished map
+
+[33mcommit f93903f958a225ccb6f8da11d924977965f725f8[m
+Author: unknown <eshel@webiks.com>
+Date:   Mon Jul 15 15:16:10 2024 +0300
+
+    first commit
