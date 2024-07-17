@@ -1,0 +1,6 @@
+{
+  "nameRequire": "Name is required",
+  "LatitudeRequire": "Latitude is required",
+  "LongitudeRequire": "Longitude is required",
+  "btnTitle": "Add"
+}

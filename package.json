@@ -2,9 +2,14 @@
   "name": "duckmap",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/electron/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "build": "tsc -p tsconfig.json",
+    "package": "npm run build:electron && electron-packager . DuckMap --platform=win32 --arch=x64 --out=dist-electron --overwrite",
+    "dev": "set NODE_ENV=development&& wait-on tcp:5173 && electron .",
+    "dev-frontend": "cd frontend && npm run dev",
+    "dev-electron": "wait-on tcp:5173 && electron ."
   },
   "repository": {
     "type": "git",
@@ -17,7 +22,12 @@
   },
   "homepage": "https://github.com/EshelEyni/DuckMap#readme",
   "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/node": "^20.14.10",
+    "concurrently": "^8.2.2",
     "electron": "^31.2.0",
-    "electron-packager": "^17.1.2"
+    "electron-packager": "^17.1.2",
+    "typescript": "^5.5.3",
+    "wait-on": "^7.2.0"
   }
 }
